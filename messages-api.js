@@ -3,10 +3,10 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const bodyParser = bodyParser.json();
-app.use(bodyParser);
+const jsonParser = bodyParser.json();
+app.use(jsonParser);
 
-const port = 3000;
+const port = 3002;
 let numreq = 0;
 
 app.listen(port, console.log(`App listening on port ${port}.`));
@@ -14,16 +14,21 @@ app.listen(port, console.log(`App listening on port ${port}.`));
 app.post("/messages", (req, res, next) => {
   numreq++;
 
-  const bodyValues = Object.values(req.body);
-  console.log("Request body: ", bodyValues);
+  const { text } = req.body;
 
   if (numreq > 5) {
-    return res.status(429).end();
+    return res.status(429).send("Too many requests!");
   }
 
-  if (typeof bodyValues[0] !== "string" || bodyValues[0] === "") {
-    return res.status(400).end();
+  if (text == "") {
+    return res.status(400).send("Text property is empty.");
+  } else if (!text) {
+    return res.status(400).send("Text property does not exist.");
   }
 
-  res.status(200).send({ message: "Message received loud and clear." });
+  console.log("Text property: ", text);
+
+  res
+    .status(200)
+    .send({ message: `Message number ${numreq} received loud and clear.` });
 });
