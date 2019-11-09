@@ -41,7 +41,8 @@ const theMovies = [
   }
 ];
 
-Movie.truncate();
+// Movie.truncate();
+
 Movie.bulkCreate(theMovies);
 
 module.exports = Movie;

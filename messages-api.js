@@ -6,7 +6,7 @@ const app = express();
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-const port = 3002;
+const port = 3000;
 let numreq = 0;
 
 app.listen(port, console.log(`App listening on port ${port}.`));

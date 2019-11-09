@@ -9,6 +9,6 @@ const jsonParser = bodyParser.json();
 app.use(jsonParser);
 app.use(router);
 
-const port = 4001;
+const port = 4000;
 
-app.listen(port, () => console.log(`App listening to port ${port}`));
+app.listen(port, () => console.log(`App listening on port ${port}`));

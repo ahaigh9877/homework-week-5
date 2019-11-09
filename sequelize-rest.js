@@ -51,7 +51,7 @@ const theMovies = [
 
 sequelize
   .sync({ force: false })
-  .then(() => Movie.truncate())
+  // .then(() => Movie.truncate())
   .then(() => {
     Promise.all(Movie.bulkCreate(theMovies)).catch(console.error);
   })
